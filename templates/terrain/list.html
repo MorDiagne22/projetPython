@@ -1,0 +1,27 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Terrain{% endblock %} {% block body %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">Liste des Ventes</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Numéro</th>
+                    <th>Superficie</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.numero }}</td>
+                    <td>{{ item.superfice }} m²</td>
+                    <td>{{ item.longitude }}</td>
+                    <td>{{ item.latitude }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

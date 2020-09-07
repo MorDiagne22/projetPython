@@ -1,0 +1,71 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Notaire{% endblock %} {% block body %}
+<div class="row">
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Liste des Notaire</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>CNI</th>
+                    </tr>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.numero }}</td>
+                        <td>{{ item.prenom }}</td>
+                        <td>{{ item.nom }}</td>
+                        <td>{{ item.cni }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Modification Notaire</div>
+            <div class="card-body">
+
+                <form method="POST" action="{{url_for('notaire_update', id=notaire.id)}}">
+                    <div class="form-group">
+                        <label for="inputAddress2">Numéro: </label>
+                        <input type="text" class="form-control" value="{{ notaire.numero }}" name="numero" id="inputCni" placeholder="" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputNom">Nom</label>
+                            <input type="text" class="form-control" value="{{ notaire.nom }}" name="nom" id="inputNom" placeholder="Nom">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPrenom">Prenom</label>
+                            <input type="text" class="form-control" value="{{ notaire.prenom }}" name="prenom" id="inputPrenom" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" value="{{ notaire.email }}" name="email" id="inputEmail4" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputTelephone">Télèphone</label>
+                            <input type="text" class="form-control" id="inputTel" value="{{ notaire.telephone }}" name="telephone" placeholder="Télèphone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Adresse</label>
+                        <input type="text" class="form-control" name="adresse" value="{{ notaire.adresse }}" id="inputAddress" placeholder="Qtr Comm rue Palla /tiv">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Cni</label>
+                        <input type="text" class="form-control" value="{{ notaire.cni }}" name="cni" id="inputCni" placeholder="cni">
+                    </div>
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

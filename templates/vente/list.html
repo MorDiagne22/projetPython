@@ -1,0 +1,31 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Vente{% endblock %} {% block body %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">Liste des Ventes</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Numéro</th>
+                    <th>Montant</th>
+                    <th>Terrain</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in data_vente %}
+                <tr>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning">Editer</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

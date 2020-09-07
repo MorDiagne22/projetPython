@@ -1,0 +1,36 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Foncier{% endblock %} {% block body %}
+<h4>
+    <center>Titre Foncier</center>
+</h4><br>
+<div class="row">
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
+        </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header">Liste des Titres Foncier</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Proprietaire</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for item in data_foncier %}
+                    <tr>
+                        <td>{{ item.numero }}</td>
+                        <td>{{ item.prenom }} {{ item.nom }}</td>
+                        <td>
+                            <a type="btn" href="{{url_for('foncier_update', id=item.id)}}" class="btn btn-warning">Editer</a>
+                            <a type="btn" href="#" class="btn btn-info">Imprimer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

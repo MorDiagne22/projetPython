@@ -1,0 +1,75 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Vente{% endblock %} {% block body %}
+<div class="row">
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Liste des Ventes</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Montant</th>
+                    </tr>
+                    {% for item in data_vente %}
+                    <tr>
+                        <td>{{ item.numero }}</td>
+                        <td>{{ item.montant }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container col-md-6">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
+        </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header">Nouvelle Vente</div>
+            <div class="card-body">
+
+                <form method="POST" action="/vente/add">
+                    <div class="form-group">
+                        <label for="inputAddress2">Numéro: </label>
+                        <input type="text" class="form-control" value="{{ numero }}" name="numero" id="inputCni" placeholder="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNom">Montant</label>
+                        <input type="number" class="form-control" name="montant" id="montant" placeholder="Montant">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Terrain</label>
+                        <select class="form-control" name="terrain">
+                            <option>----- Choisi le terrain -----</option>                            
+                            {% for item in data_terrain %}
+                            <option value="{{ item.id }}">{{ item.numero }}</option>  
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Acheteur</label>
+                        <select class="form-control" name="acheteur">
+                            <option>----- Choisi l'acheteur -----</option>                            
+                            {% for item in data_acheteur %}
+                            <option value="{{ item.id }}">{{ item.numero }} {{item.prenom}} {{item.nom }}</option>  
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Venteur</label>
+                        <select class="form-control" name="vendeur">
+                            <option>----- Choisi le vendeur -----</option>
+                            {% for item in data_vendeur %}
+                            <option value="{{ item.id }}">{{ item.numero }} {{item.prenom}} {{item.nom }}</option>  
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "accueil.html" %} {% block titrePage %} Présentation utilisateur {% endblock %} {% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <a class="navbar-brand" href="/filiere/add">Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Filiere</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block content %}
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='image/backImage.jpg') }}" alt="Los Angeles">
+        </div>
+        <div class="carousel-item">
+            <!--<img src="{{ url_for('static', filename='image/backImage1.jpg') }}" alt="Chicago">-->
+        </div>
+        <div class="carousel-item">
+            <!-- <img src="{{ url_for('static', filename='image/backImage3.jpg') }}" alt="New York"> -->
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+{% endblock %}

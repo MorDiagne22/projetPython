@@ -1,0 +1,84 @@
+{% extends 'accueil.html' %} {% block title %}Gest-Prop{% endblock %} {% block body %}
+<div class="row">
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Liste des Proprietaire</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>CNI</th>
+                    </tr>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.numero }}</td>
+                        <td>{{ item.prenom }}</td>
+                        <td>{{ item.nom }}</td>
+                        <td>{{ item.cni }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container col-md-6">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
+        </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header">Nouveau Proprietaire</div>
+            <div class="card-body">
+
+                <form method="POST" action="/proprietaire/add">
+                    <div class="form-group">
+                        <label for="inputAddress2">Numéro: </label>
+                        <input type="text" class="form-control" value="{{ numero }}" name="numero" id="inputCni" placeholder="" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputNom">Nom</label>
+                            <input type="text" class="form-control" name="nom" id="inputNom" placeholder="Nom">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPrenom">Prenom</label>
+                            <input type="text" class="form-control" name="prenom" id="inputPrenom" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputTelephone">Télèphone</label>
+                            <input type="text" class="form-control" id="inputTel" name="telephone" placeholder="Télèphone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Adresse</label>
+                        <input type="text" class="form-control" name="adresse" id="inputAddress" placeholder="Qtr Comm rue Palla /tiv">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Cni</label>
+                        <input type="text" class="form-control" name="cni" id="inputCni" placeholder="cni">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Type Proprietaire</label>
+                        <select class="form-control" name="type">
+                            <option>----- Choisir le Type -----</option>
+                            <option value="Acheteur">Acheteur</option>
+                            <option value="Vendeur">Vendeur</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
